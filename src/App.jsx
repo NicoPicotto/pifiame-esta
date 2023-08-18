@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { Stack, Heading, Switch, Text, Button, Link } from '@chakra-ui/react';
+import {
+	Stack,
+	Heading,
+	Switch,
+	Text,
+	Button,
+	Link,
+	useMediaQuery,
+} from '@chakra-ui/react';
 import outcomes from './outcomes';
 import TypewriterComponent from './typed';
 
@@ -7,6 +15,7 @@ function App() {
 	const [critical, setCritical] = useState(true);
 	const [value, setValue] = useState(null);
 	const [outcomeText, setOutcomeText] = useState('');
+	const [isMobile] = useMediaQuery('(max-width: 1100px)');
 
 	function getRandomOutcome() {
 		const actionType = critical ? 'critico' : 'pifia';
@@ -20,6 +29,7 @@ function App() {
 	return (
 		<Stack
 			h='100dvh'
+			overflow='hidden'
 			align='center'
 			justify='center'
 			position='relative'
@@ -29,9 +39,14 @@ function App() {
 					: 'radial-gradient(circle at center, #111026, #160C0F)'
 			}
 		>
-			<Stack maxW='36em' justify='center' align='center' gap='1.5em'>
+			<Stack
+				maxW={isMobile ? '90%' : '36em'}
+				justify='center'
+				align='center'
+				gap='1.5em'
+			>
 				<Stack align='center'>
-					<Heading as='h1' size='2xl' color='terciario'>
+					<Heading as='h1' size='2xl' color='terciario' textAlign='center'>
 						Tabla de Críticos y Pifias
 					</Heading>
 				</Stack>
@@ -44,10 +59,13 @@ function App() {
 						Pifia
 					</Heading>
 				</Stack>
-				<Stack gap='1.5em'>
-					<Stack direction='row' justify='space-between'>
+				<Stack gap='1.5em' w={isMobile && '100%'}>
+					<Stack
+						direction={isMobile ? 'column' : 'row'}
+						justify='space-between'
+					>
 						<Button
-							w='12em'
+							w={isMobile ? '100%' : '12em'}
 							bgColor={value == 'cortante' ? '#1B1959' : '#4A4E8C'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
@@ -59,7 +77,7 @@ function App() {
 							</Text>
 						</Button>
 						<Button
-							w='12em'
+							w={isMobile ? '100%' : '12em'}
 							bgColor={value == 'perforante' ? '#1B1959' : '#4A4E8C'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
@@ -71,7 +89,7 @@ function App() {
 							</Text>
 						</Button>
 						<Button
-							w='12em'
+							w={isMobile ? '100%' : '12em'}
 							bgColor={value == 'contundente' ? '#1B1959' : '#4A4E8C'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
@@ -88,7 +106,7 @@ function App() {
 							bgColor='#1B1959'
 							_hover={{ bgColor: '#131A40' }}
 							color='terciario'
-              p='0.5em 0.8em'
+							p='0.5em 0.8em'
 							size='lg'
 							onClick={() => setOutcomeText(getRandomOutcome())}
 						>
@@ -96,11 +114,17 @@ function App() {
 						</Button>
 					</Stack>
 					<Stack h='5em' w='100%'>
-						<TypewriterComponent outcomeText={outcomeText}/>
+						<TypewriterComponent outcomeText={outcomeText} />
 					</Stack>
 				</Stack>
 			</Stack>
-			<Text fontSize="sm" color='terciario' position='fixed' bottom='2em'>
+			<Text
+				fontSize='sm'
+				color='terciario'
+				position='fixed'
+				bottom={!isMobile && '2em'}
+				top={isMobile && '2em'}
+			>
 				Creado con ♥ por{' '}
 				<Link href='https://nicopicotto.com/' target='_blank'>
 					Nico Picotto
