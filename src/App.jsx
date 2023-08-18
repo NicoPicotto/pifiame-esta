@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Stack, Heading, Switch, Text, Button, Link } from '@chakra-ui/react';
 import outcomes from './outcomes';
+import TypewriterComponent from './typed';
 
 function App() {
 	const [critical, setCritical] = useState(true);
@@ -95,9 +96,7 @@ function App() {
 						</Button>
 					</Stack>
 					<Stack h='5em' w='100%'>
-						<Text fontSize="lg" color='terciario' textAlign='center'>
-							{outcomeText}
-						</Text>
+						<TypewriterComponent outcomeText={outcomeText}/>
 					</Stack>
 				</Stack>
 			</Stack>

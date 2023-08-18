@@ -76,3 +76,5 @@ const outcomes = {
 		],
 	},
 };
+
+export default outcomes;
