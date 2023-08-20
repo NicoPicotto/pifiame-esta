@@ -66,10 +66,12 @@ function App() {
 					>
 						<Button
 							w={isMobile ? '100%' : '12em'}
-							bgColor={value == 'cortante' ? '#1B1959' : '#4A4E8C'}
+							bgColor={value == 'cortante' ? '#1B1959' : 'transparent'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
+							variant={value == "cortante" ? "filled" : "outline"}
 							borderRadius={5}
+							borderColor="#1B1959"
 							onClick={() => setValue('cortante')}
 						>
 							<Text fontSize='lg' color='terciario'>
@@ -78,10 +80,12 @@ function App() {
 						</Button>
 						<Button
 							w={isMobile ? '100%' : '12em'}
-							bgColor={value == 'perforante' ? '#1B1959' : '#4A4E8C'}
+							bgColor={value == 'perforante' ? '#1B1959' : 'transparent'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
+							variant={value == "perforante" ? "filled" : "outline"}
 							borderRadius={5}
+							borderColor="#1B1959"
 							onClick={() => setValue('perforante')}
 						>
 							<Text fontSize='lg' color='terciario'>
@@ -90,10 +94,12 @@ function App() {
 						</Button>
 						<Button
 							w={isMobile ? '100%' : '12em'}
-							bgColor={value == 'contundente' ? '#1B1959' : '#4A4E8C'}
+							bgColor={value == 'contundente' ? '#1B1959' : 'transparent'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
+							variant={value == "contundente" ? "filled" : "outline"}
 							borderRadius={5}
+							borderColor="#1B1959"
 							onClick={() => setValue('contundente')}
 						>
 							<Text fontSize='lg' color='terciario'>
@@ -104,7 +110,7 @@ function App() {
 					<Stack w='100%'>
 						<Button
 							bgColor='#1B1959'
-							_hover={{ bgColor: '#131A40' }}
+							_hover={{ bgColor: '#26246e' }}
 							color='terciario'
 							p='0.5em 0.8em'
 							size='lg'
