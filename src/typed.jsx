@@ -7,7 +7,7 @@ function TypewriterComponent({ outcomeText }) {
 
 	const options = {
 		strings: [outcomeText],
-		typeSpeed: 20,
+		typeSpeed: 15,
 		backSpeed: 50,
 		backDelay: 1000,
 		startDelay: 300,
