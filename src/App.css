@@ -1,4 +1,6 @@
 /* Hide the original cursor */
 .typed-cursor {
     display: inline !important;
+    color: #9FB3BF;
+    font-size: var(--chakra-fontSizes-lg);
 }
