@@ -7,10 +7,11 @@ import {
 	Button,
 	Link,
 	useMediaQuery,
+	Tooltip
 } from '@chakra-ui/react';
 import outcomes from './outcomes';
 import TypewriterComponent from './typed';
-import "./App.css"
+import './App.css';
 
 function App() {
 	const [critical, setCritical] = useState(true);
@@ -70,9 +71,9 @@ function App() {
 							bgColor={value == 'cortante' ? '#1B1959' : 'transparent'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
-							variant={value == "cortante" ? "filled" : "outline"}
+							variant={value == 'cortante' ? 'filled' : 'outline'}
 							borderRadius={5}
-							borderColor="#1B1959"
+							borderColor='#1B1959'
 							onClick={() => setValue('cortante')}
 						>
 							<Text fontSize='lg' color='terciario'>
@@ -84,9 +85,9 @@ function App() {
 							bgColor={value == 'perforante' ? '#1B1959' : 'transparent'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
-							variant={value == "perforante" ? "filled" : "outline"}
+							variant={value == 'perforante' ? 'filled' : 'outline'}
 							borderRadius={5}
-							borderColor="#1B1959"
+							borderColor='#1B1959'
 							onClick={() => setValue('perforante')}
 						>
 							<Text fontSize='lg' color='terciario'>
@@ -98,9 +99,9 @@ function App() {
 							bgColor={value == 'contundente' ? '#1B1959' : 'transparent'}
 							_hover={{ bgColor: '#1B1959' }}
 							p='0.5em 0.8em'
-							variant={value == "contundente" ? "filled" : "outline"}
+							variant={value == 'contundente' ? 'filled' : 'outline'}
 							borderRadius={5}
-							borderColor="#1B1959"
+							borderColor='#1B1959'
 							onClick={() => setValue('contundente')}
 						>
 							<Text fontSize='lg' color='terciario'>
@@ -120,7 +121,7 @@ function App() {
 							¡Roll!
 						</Button>
 					</Stack>
-					<Stack h='5em' w='100%' display="inline" textAlign="center">
+					<Stack h='5em' w='100%' display='inline' textAlign='center'>
 						<TypewriterComponent outcomeText={outcomeText} />
 					</Stack>
 				</Stack>
@@ -138,6 +139,21 @@ function App() {
 				</Link>
 				.
 			</Text>
+			<Tooltip label="Apéndice de condiciones" hasArrow bgColor="#1B1959" color="terciario">
+			<Link
+				href='https://www.enciclopediadnd.es/reglas/reglas/estados-alterados/'
+				target='_blank'
+				position='fixed'
+				top='2em'
+				right='2em'
+				fontSize='sm'
+				color='terciario'
+				cursor="pointer"
+				_hover={{textDecor: "none"}}
+			>
+				&#129396;
+			</Link>
+			</Tooltip>
 		</Stack>
 	);
 }
