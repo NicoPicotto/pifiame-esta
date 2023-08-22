@@ -29,6 +29,7 @@ function TypewriterComponent({ outcomeText }) {
 			fontSize='lg'
 			color='terciario'
 			textAlign='center'
+			display="inline"
 			ref={typeTargetRef}
 		></Text>
 	);

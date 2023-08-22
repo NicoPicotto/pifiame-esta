@@ -1,0 +1,4 @@
+/* Hide the original cursor */
+.typed-cursor {
+    display: inline !important;
+}

@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import outcomes from './outcomes';
 import TypewriterComponent from './typed';
+import "./App.css"
 
 function App() {
 	const [critical, setCritical] = useState(true);
@@ -119,7 +120,7 @@ function App() {
 							¡Roll!
 						</Button>
 					</Stack>
-					<Stack h='5em' w='100%'>
+					<Stack h='5em' w='100%' display="inline" textAlign="center">
 						<TypewriterComponent outcomeText={outcomeText} />
 					</Stack>
 				</Stack>
