@@ -7,7 +7,7 @@ import {
 	Button,
 	Link,
 	useMediaQuery,
-	Tooltip
+	Tooltip,
 } from '@chakra-ui/react';
 import outcomes from './outcomes';
 import TypewriterComponent from './typed';
@@ -139,20 +139,26 @@ function App() {
 				</Link>
 				.
 			</Text>
-			<Tooltip label="Apéndice de condiciones" hasArrow bgColor="#1B1959" color="terciario">
-			<Link
-				href='https://www.enciclopediadnd.es/reglas/reglas/estados-alterados/'
-				target='_blank'
-				position='fixed'
-				top='2em'
-				right='2em'
-				fontSize='sm'
+			<Tooltip
+				placement='left'
+				label='Apéndice de condiciones'
+				hasArrow
+				bgColor='#1B1959'
 				color='terciario'
-				cursor="pointer"
-				_hover={{textDecor: "none"}}
 			>
-				&#129396;
-			</Link>
+				<Link
+					href='https://www.enciclopediadnd.es/reglas/reglas/estados-alterados/'
+					target='_blank'
+					position='fixed'
+					top='2em'
+					right='2em'
+					fontSize='sm'
+					color='terciario'
+					cursor='pointer'
+					_hover={{ textDecor: 'none' }}
+				>
+					&#129396;
+				</Link>
 			</Tooltip>
 		</Stack>
 	);
