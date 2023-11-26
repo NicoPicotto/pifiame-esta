@@ -13,6 +13,7 @@ import {
 import TypewriterComponent from './typed';
 import useAIOutcome from './useAIOutcome';
 import './App.css';
+import ModalConditions from './Components/Modal';
 
 function App() {
 	const [critical, setCritical] = useState(true);
@@ -50,7 +51,7 @@ function App() {
 			background={
 				critical
 					? 'radial-gradient(circle at center, #081026, #0A0C0F)'
-					: 'radial-gradient(circle at center, #111026, #160C0F)'
+					: 'radial-gradient(circle, rgba(2,0,36,1) 50%, rgba(61,0,0,1) 100%)'
 			}
 		>
 			<Stack
@@ -151,27 +152,8 @@ function App() {
 				</Link>
 				.
 			</Text>
-			<Tooltip
-				placement='left'
-				label='Conditions'
-				hasArrow
-				bgColor='#1B1959'
-				color='terciario'
-			>
-				<Link
-					href='https://roll20.net/compendium/dnd5e/Conditions#content'
-					target='_blank'
-					position='fixed'
-					top='2em'
-					right='2em'
-					fontSize='sm'
-					color='terciario'
-					cursor='pointer'
-					_hover={{ textDecor: 'none' }}
-				>
-					&#129396;
-				</Link>
-			</Tooltip>
+			
+			<ModalConditions />
 		</Stack>
 	);
 }

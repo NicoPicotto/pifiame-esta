@@ -35,7 +35,6 @@ const useAIOutcome = () => {
 			}
 		} catch (error) {
 			console.error('Hubo un error al obtener un resultado de la IA:', error);
-			// Puedes decidir si quieres retornar un mensaje de error aquí
 			return 'Ocurrió un error al generar el resultado.';
 		}
 	};
