@@ -7,13 +7,13 @@ import {
 	Button,
 	Link,
 	useMediaQuery,
-	Tooltip,
 	Spinner,
 } from '@chakra-ui/react';
 import TypewriterComponent from './typed';
 import useAIOutcome from './useAIOutcome';
 import './App.css';
 import ModalConditions from './Components/Modal';
+import { inject } from '@vercel/analytics';
 
 function App() {
 	const [critical, setCritical] = useState(true);
@@ -21,6 +21,7 @@ function App() {
 	const [isMobile] = useMediaQuery('(max-width: 1100px)');
 	const [outcomeText, setOutcomeText] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	inject();
 
 	const fetchOutcome = useAIOutcome(); // useAIOutcome ahora retorna la función fetchOutcome
 
@@ -152,7 +153,7 @@ function App() {
 				</Link>
 				.
 			</Text>
-			
+
 			<ModalConditions />
 		</Stack>
 	);
