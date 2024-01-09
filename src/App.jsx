@@ -21,6 +21,7 @@ function App() {
 	const [isMobile] = useMediaQuery('(max-width: 1100px)');
 	const [outcomeText, setOutcomeText] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	console.log('Analytics: ', Analytics);
 
 	const fetchOutcome = useAIOutcome(); // useAIOutcome ahora retorna la función fetchOutcome
 
