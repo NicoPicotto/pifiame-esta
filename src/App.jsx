@@ -27,17 +27,19 @@ function App() {
 
 	const handleRollClick = async () => {
 		if (!value) {
-			alert('Selecciona un tipo de arma primero.');
+			alert('Select a weapon type first.');
 			return;
 		}
 
 		setIsLoading(true);
 
-		const result = await fetchOutcome(
-			`Describe a ${
-				critical ? 'critical (natural 20)' : 'critical fail (natural 1)'
-			} attack roll with a ${value} weapon attack in a game of Dungeons and Dragons.`
-		);
+		// Adjust the prompt to fit the new requirements
+		const prompt = `You are an experienced Dungeon Master from Dungeons and Dragons 5th Edition. Describe the outcome of a ${
+			critical ? 'critical hit (natural 20)' : 'critical fail (natural 1)'
+		} with a ${value} type damage (Slashing, Bludgeoning, or Piercing) attack. Focus on the scene and the direct consequence, which should include a real D&D 5e effect: Advantage, Disadvantage, or a Condition (Blinded, Charmed, Deafened, Frightened, Grappled, Incapacitated, Invisible, Paralyzed, Petrified, Poisoned, Prone, Restrained, Stunned, Unconscious, Exhaustion). Keep the description brief, ideally a short paragraph.`;
+
+		// Fetch the outcome using the revised prompt
+		const result = await fetchOutcome(prompt);
 		setOutcomeText(result);
 		setIsLoading(false);
 	};
@@ -148,7 +150,7 @@ function App() {
 				top={isMobile && '2em'}
 			>
 				Created with ♥ by{' '}
-				<Link href='https://nicopicotto.com/' target='_blank'>
+				<Link href='https://nicopicotto.dev/' target='_blank'>
 					Nico Picotto
 				</Link>
 				.

@@ -9,7 +9,7 @@ const useAIOutcome = () => {
 					{
 						role: 'system',
 						content:
-							'You are an experienced Dungeon Master from Dungeons and Dragons 5th Edition. Your job is to provide creative, fun, and impactful outcomes for when the user tells you a player hit a CRITICAL or FAIL roll. The user will also provide the type of weapon: Slashing, bludgeoning, and piercing. The answers must be short, 2 sentences tops, describing a little the scene and telling what happens to the user or the enemy.',
+							'You are an experienced Dungeon Master from Dungeons and Dragons 5th Edition. Your job is to provide creative, fun, and impactful outcomes for when the user tells you a player hit a CRITICAL HIT or a CRITICAL FAIL. The user will also provide the type of damage: Slashing, Bludgeoning, or Piercing. Without mentioning specific weapons, describe the outcome in two sentences, focusing on the scene and the direct consequence, which should include a real D&D 5e effect: Advantage, Disadvantage, or a Condition (Blinded, Charmed, Deafened, Frightened, Grappled, Incapacitated, Invisible, Paralyzed, Petrified, Poisoned, Prone, Restrained, Stunned, Unconscious, Exhaustion).',
 					},
 					{
 						role: 'user',
@@ -35,7 +35,7 @@ const useAIOutcome = () => {
 			}
 		} catch (error) {
 			console.error('Hubo un error al obtener un resultado de la IA:', error);
-			return 'Ocurrió un error al generar el resultado.';
+			return 'Please ask Nico to put money on the OpenAI Account :/';
 		}
 	};
 
