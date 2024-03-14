@@ -22,7 +22,7 @@ function App() {
 	const [outcomeText, setOutcomeText] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 
-	const fetchOutcome = useAIOutcome(); // useAIOutcome ahora retorna la función fetchOutcome
+	const fetchOutcome = useAIOutcome();
 
 	const handleRollClick = async () => {
 		if (!value) {
