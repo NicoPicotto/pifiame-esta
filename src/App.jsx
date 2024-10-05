@@ -26,18 +26,18 @@ function App() {
 
    const handleRollClick = async () => {
       if (!value) {
-         alert("Seleccioná un tipo de daño.");
+         alert("Select a weapon type first.");
          return;
       }
 
       setIsLoading(true);
 
-      const prompt = `Eres un Dungeon Master experimentado de Dungeons and Dragons 5ta Edición. Describe el resultado de un ${
+      const prompt = `Describe el resultado de un ${
          critical ? "golpe crítico (natural 20)" : "fallo crítico (natural 1)"
-      } con un ataque de daño tipo ${value} (Cortante, Contundente o Perforante). Enfócate en la escena y la consecuencia directa, que debe incluir un efecto real de D&D 5e: Ventaja, Desventaja o una Condición (Cegado, Hechizado, Ensordecido, Aterrorizado, Agarrado, Incapacitado, Invisible, Paralizado, Petrificado, Envenenado, Derribado, Restringido, Aturdido, Inconsciente, Agotamiento). Evita mencionar personajes o criaturas específicas; utiliza términos generales como "enemigo" o "criatura". Mantén la descripción breve, idealmente un párrafo corto.`;
+      } con un ataque de daño tipo ${value} (Cortante, Contundente o Perforante).`;
 
-      // Fetch the outcome using the revised prompt
-      const result = await fetchOutcome(prompt);
+      // Fetch the outcome using the revised prompt, critical, and value
+      const result = await fetchOutcome(prompt, critical, value);
       setOutcomeText(result);
       setIsLoading(false);
    };

@@ -2,22 +2,39 @@ import axios from "axios";
 import outcomesList from "./outcomes.jsx";
 
 const useAIOutcome = () => {
-   const fetchOutcome = async (prompt) => {
+	
+   const getRandomExamples = (type, damageType, count = 2) => {
+      // Verificamos que existan resultados para el tipo de golpe y daño.
+      if (!outcomesList[type] || !outcomesList[type][damageType]) return [];
+
+      // Lista de posibles ejemplos
+      const outcomesArray = outcomesList[type][damageType];
+
+      // Seleccionar ejemplos aleatorios
+      const shuffled = outcomesArray.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+   };
+
+   const fetchOutcome = async (prompt, critical, value) => {
       try {
          // Obtener ejemplos aleatorios
-         const examples = getRandomExamples(
-            critical ? "critico" : "pifia",
-            value
-         );
+         const type = critical ? "critico" : "pifia";
+         const examples = getRandomExamples(type, value, 2); // Cambia el número de ejemplos si lo deseas
 
-         const systemMessage = `Eres un Dungeon Master experimentado en Dungeons and Dragons 5ta Edición. Tu objetivo es proporcionar resultados únicos y creativos para ${
-            critical ? "golpes críticos" : "fallos críticos"
-         } con ataques de daño ${value}. Aquí tienes algunos ejemplos:
+         // Construir el systemMessage con ejemplos incluidos
+         const systemMessage = `Eres un Dungeon Master experimentado de Dungeons and Dragons 5ta Edición. Tu trabajo es describir resultados únicos y creativos para golpes críticos y fallos críticos en ataques de daño tipo Cortante, Contundente o Perforante.
   
+  - En tus descripciones:
+	- Enfócate en la escena y las consecuencias directas del ataque.
+	- Incluye un efecto real de D&D 5e: Ventaja, Desventaja o una Condición (Cegado, Hechizado, Ensordecido, Aterrorizado, Agarrado, Incapacitado, Invisible, Paralizado, Petrificado, Envenenado, Derribado, Restringido, Aturdido, Inconsciente, Agotamiento).
+	- Evita mencionar personajes o criaturas específicas; utiliza términos generales como "enemigo" o "criatura".
+	- Mantén las descripciones breves, idealmente un párrafo corto.
+  
+  Ejemplos de resultados para ${type} con daño ${value}:
   ${examples.map((ex, index) => `Ejemplo ${index + 1}: "${ex}"`).join("\n")}
-  
-  Ahora, genera una descripción nueva y única basada en la información del usuario. Evita repetir los ejemplos anteriores.`;
+  `;
 
+         // Construir el payload para OpenAI
          const payload = {
             model: "gpt-4",
             temperature: 1.0,
