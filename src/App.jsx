@@ -1,164 +1,165 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
-	Stack,
-	Heading,
-	Switch,
-	Text,
-	Button,
-	Link,
-	useMediaQuery,
-	Spinner,
-} from '@chakra-ui/react';
-import TypewriterComponent from './typed';
-import useAIOutcome from './useAIOutcome';
-import './App.css';
-import ModalConditions from './Components/Modal';
-import { Analytics } from '@vercel/analytics/react';
+   Stack,
+   Heading,
+   Switch,
+   Text,
+   Button,
+   Link,
+   useMediaQuery,
+   Spinner,
+} from "@chakra-ui/react";
+import TypewriterComponent from "./typed";
+import useAIOutcome from "./useAIOutcome";
+import "./App.css";
+import ModalConditions from "./Components/Modal";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
-	const [critical, setCritical] = useState(true);
-	const [value, setValue] = useState(null);
-	const [isMobile] = useMediaQuery('(max-width: 1100px)');
-	const [outcomeText, setOutcomeText] = useState('');
-	const [isLoading, setIsLoading] = useState(false);
+   const [critical, setCritical] = useState(true);
+   const [value, setValue] = useState(null);
+   const [isMobile] = useMediaQuery("(max-width: 1100px)");
+   const [outcomeText, setOutcomeText] = useState("");
+   const [isLoading, setIsLoading] = useState(false);
 
-	const fetchOutcome = useAIOutcome();
+   const fetchOutcome = useAIOutcome();
 
-	const handleRollClick = async () => {
-		if (!value) {
-			alert('Select a weapon type first.');
-			return;
-		}
+   const handleRollClick = async () => {
+      if (!value) {
+         alert("Seleccioná un tipo de daño.");
+         return;
+      }
 
-		setIsLoading(true);
+      setIsLoading(true);
 
-		// Adjust the prompt to fit the new requirements
-		const prompt = `You are an experienced Dungeon Master from Dungeons and Dragons 5th Edition. Describe the outcome of a ${
-			critical ? 'critical hit (natural 20)' : 'critical fail (natural 1)'
-		} with a ${value} type damage (Slashing, Bludgeoning, or Piercing) attack. Focus on the scene and the direct consequence, which should include a real D&D 5e effect: Advantage, Disadvantage, or a Condition (Blinded, Charmed, Deafened, Frightened, Grappled, Incapacitated, Invisible, Paralyzed, Petrified, Poisoned, Prone, Restrained, Stunned, Unconscious, Exhaustion). Keep the description brief, ideally a short paragraph.`;
+      const prompt = `Eres un Dungeon Master experimentado de Dungeons and Dragons 5ta Edición. Describe el resultado de un ${
+         critical ? "golpe crítico (natural 20)" : "fallo crítico (natural 1)"
+      } con un ataque de daño tipo ${value} (Cortante, Contundente o Perforante). Enfócate en la escena y la consecuencia directa, que debe incluir un efecto real de D&D 5e: Ventaja, Desventaja o una Condición (Cegado, Hechizado, Ensordecido, Aterrorizado, Agarrado, Incapacitado, Invisible, Paralizado, Petrificado, Envenenado, Derribado, Restringido, Aturdido, Inconsciente, Agotamiento). Evita mencionar personajes o criaturas específicas; utiliza términos generales como "enemigo" o "criatura". Mantén la descripción breve, idealmente un párrafo corto.`;
 
-		// Fetch the outcome using the revised prompt
-		const result = await fetchOutcome(prompt);
-		setOutcomeText(result);
-		setIsLoading(false);
-	};
+      // Fetch the outcome using the revised prompt
+      const result = await fetchOutcome(prompt);
+      setOutcomeText(result);
+      setIsLoading(false);
+   };
 
-	return (
-		<Stack
-			h='100dvh'
-			overflow='hidden'
-			align='center'
-			justify='center'
-			position='relative'
-			background={
-				critical
-					? 'radial-gradient(circle at center, #081026, #0A0C0F)'
-					: 'radial-gradient(circle, rgba(2,0,36,1) 50%, rgba(61,0,0,1) 100%)'
-			}
-		>
-			<Stack
-				maxW={isMobile ? '90%' : '36em'}
-				justify='center'
-				align='center'
-				gap='1.5em'
-			>
-				<Stack align='center'>
-					<Heading as='h1' size='xl' color='terciario' textAlign='center'>
-						Critical Hit and Fumble Table
-					</Heading>
-				</Stack>
-				<Stack direction='row' align='center' gap='1em'>
-					<Heading as='h2' size='lg' color='primario'>
-						Critical
-					</Heading>
-					<Switch size='lg' onChange={() => setCritical(!critical)} />
-					<Heading as='h2' size='lg' color='primario'>
-						Fumble
-					</Heading>
-				</Stack>
-				<Stack gap='1.5em' w={isMobile && '100%'}>
-					<Stack
-						direction={isMobile ? 'column' : 'row'}
-						justify='space-between'
-					>
-						<Button
-							w={isMobile ? '100%' : '12em'}
-							bgColor={value == 'slashing' ? '#1B1959' : 'transparent'}
-							_hover={{ bgColor: '#1B1959' }}
-							p='0.5em 0.8em'
-							variant={value == 'slashing' ? 'filled' : 'outline'}
-							borderRadius={5}
-							borderColor='#1B1959'
-							onClick={() => setValue('slashing')}
-						>
-							<Text fontSize='lg' color='terciario'>
-								Slashing
-							</Text>
-						</Button>
-						<Button
-							w={isMobile ? '100%' : '12em'}
-							bgColor={value == 'piercing' ? '#1B1959' : 'transparent'}
-							_hover={{ bgColor: '#1B1959' }}
-							p='0.5em 0.8em'
-							variant={value == 'piercing' ? 'filled' : 'outline'}
-							borderRadius={5}
-							borderColor='#1B1959'
-							onClick={() => setValue('piercing')}
-						>
-							<Text fontSize='lg' color='terciario'>
-								Piercing
-							</Text>
-						</Button>
-						<Button
-							w={isMobile ? '100%' : '12em'}
-							bgColor={value == 'bludgeoning' ? '#1B1959' : 'transparent'}
-							_hover={{ bgColor: '#1B1959' }}
-							p='0.5em 0.8em'
-							variant={value == 'bludgeoning' ? 'filled' : 'outline'}
-							borderRadius={5}
-							borderColor='#1B1959'
-							onClick={() => setValue('bludgeoning')}
-						>
-							<Text fontSize='lg' color='terciario'>
-								Bludgeoning
-							</Text>
-						</Button>
-					</Stack>
-					<Stack w='100%'>
-						<Button
-							bgColor='#1B1959'
-							_hover={{ bgColor: '#26246e' }}
-							color='terciario'
-							p='0.5em 0.8em'
-							size='lg'
-							onClick={handleRollClick}
-						>
-							{isLoading ? <Spinner color='white' /> : '¡Roll!'}
-						</Button>
-					</Stack>
-					<Stack h='5em' w='100%' display='inline' textAlign='center'>
-						<TypewriterComponent outcomeText={outcomeText} />
-					</Stack>
-				</Stack>
-			</Stack>
-			<Text
-				fontSize='sm'
-				color='terciario'
-				position='fixed'
-				bottom={!isMobile && '2em'}
-				top={isMobile && '2em'}
-			>
-				Created with ♥ by{' '}
-				<Link href='https://nicopicotto.dev/' target='_blank'>
-					Nico Picotto
-				</Link>
-				.
-			</Text>
+   return (
+      <Stack
+         h='100dvh'
+         overflow='hidden'
+         align='center'
+         justify='center'
+         position='relative'
+         background={
+            critical
+               ? "radial-gradient(circle at center, #081026, #0A0C0F)"
+               : "radial-gradient(circle, rgba(2,0,36,1) 50%, rgba(61,0,0,1) 100%)"
+         }
+      >
+         <Stack
+            maxW={isMobile ? "90%" : "36em"}
+            justify='center'
+            align='center'
+            gap='1.5em'
+         >
+            <Stack align='center'>
+               <Heading as='h1' size='xl' color='terciario' textAlign='center'>
+                  Tabla de Críticos y Pifias
+               </Heading>
+            </Stack>
+            <Stack direction='row' align='center' gap='1em'>
+               <Heading as='h2' size='lg' color='primario'>
+                  Crítico
+               </Heading>
+               <Switch size='lg' onChange={() => setCritical(!critical)} />
+               <Heading as='h2' size='lg' color='primario'>
+                  Pifia
+               </Heading>
+            </Stack>
+            <Stack gap='0.75rem' w={isMobile && "100%"}>
+               <Stack
+                  direction={isMobile ? "column" : "row"}
+                  justify='space-between'
+                  gap='0.75rem'
+               >
+                  <Button
+                     w={isMobile ? "100%" : "12em"}
+                     bgColor={value == "slashing" ? "#1B1959" : "transparent"}
+                     _hover={{ bgColor: "#1B1959" }}
+                     p='0.5em 0.8em'
+                     variant={value == "slashing" ? "filled" : "outline"}
+                     borderRadius={5}
+                     borderColor='#1B1959'
+                     onClick={() => setValue("slashing")}
+                  >
+                     <Text fontSize='lg' color='terciario'>
+                        Cortante
+                     </Text>
+                  </Button>
+                  <Button
+                     w={isMobile ? "100%" : "12em"}
+                     bgColor={value == "piercing" ? "#1B1959" : "transparent"}
+                     _hover={{ bgColor: "#1B1959" }}
+                     p='0.5em 0.8em'
+                     variant={value == "piercing" ? "filled" : "outline"}
+                     borderRadius={5}
+                     borderColor='#1B1959'
+                     onClick={() => setValue("piercing")}
+                  >
+                     <Text fontSize='lg' color='terciario'>
+                        Perforante
+                     </Text>
+                  </Button>
+                  <Button
+                     w={isMobile ? "100%" : "12em"}
+                     bgColor={
+                        value == "bludgeoning" ? "#1B1959" : "transparent"
+                     }
+                     _hover={{ bgColor: "#1B1959" }}
+                     p='0.5em 0.8em'
+                     variant={value == "bludgeoning" ? "filled" : "outline"}
+                     borderRadius={5}
+                     borderColor='#1B1959'
+                     onClick={() => setValue("bludgeoning")}
+                  >
+                     <Text fontSize='lg' color='terciario'>
+                        Contundente
+                     </Text>
+                  </Button>
+               </Stack>
+               <Stack w='100%'>
+                  <Button
+                     bgColor='#1B1959'
+                     _hover={{ bgColor: "#26246e" }}
+                     color='terciario'
+                     p='0.5em 0.8em'
+                     onClick={handleRollClick}
+                  >
+                     {isLoading ? <Spinner color='white' /> : "¡Roll!"}
+                  </Button>
+               </Stack>
+               <Stack h='5em' w='100%' display='inline' textAlign='center'>
+                  <TypewriterComponent outcomeText={outcomeText} />
+               </Stack>
+            </Stack>
+         </Stack>
+         <Text
+            fontSize='sm'
+            color='terciario'
+            position='fixed'
+            bottom={!isMobile && "2em"}
+            top={isMobile && "2em"}
+         >
+            Creado con ♥ por{" "}
+            <Link href='https://nicopicotto.dev/' target='_blank'>
+               Nico Picotto
+            </Link>
+            .
+         </Text>
 
-			<ModalConditions />
-			<Analytics />
-		</Stack>
-	);
+         <ModalConditions />
+         <Analytics />
+      </Stack>
+   );
 }
 
 export default App;

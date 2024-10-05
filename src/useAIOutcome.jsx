@@ -1,45 +1,64 @@
-import axios from 'axios';
+import axios from "axios";
+import outcomesList from "./outcomes.jsx";
 
 const useAIOutcome = () => {
-	const fetchOutcome = async (prompt) => {
-		try {
-			const payload = {
-				model: 'gpt-3.5-turbo',
-				messages: [
-					{
-						role: 'system',
-						content:
-							'You are an experienced Dungeon Master from Dungeons and Dragons 5th Edition. Your job is to provide creative, fun, and impactful outcomes for when the user tells you a player hit a CRITICAL HIT or a CRITICAL FAIL. The user will also provide the type of damage: Slashing, Bludgeoning, or Piercing. Without mentioning specific weapons, describe the outcome in two sentences, focusing on the scene and the direct consequence, which should include a real D&D 5e effect: Advantage, Disadvantage, or a Condition (Blinded, Charmed, Deafened, Frightened, Grappled, Incapacitated, Invisible, Paralyzed, Petrified, Poisoned, Prone, Restrained, Stunned, Unconscious, Exhaustion).',
-					},
-					{
-						role: 'user',
-						content: prompt,
-					},
-				],
-			};
+   const fetchOutcome = async (prompt) => {
+      try {
+         // Obtener ejemplos aleatorios
+         const examples = getRandomExamples(
+            critical ? "critico" : "pifia",
+            value
+         );
 
-			const headers = {
-				Authorization: `Bearer ${import.meta.env.VITE_OPENAI_SECRET_KEY}`,
-				'Content-Type': 'application/json',
-			};
+         const systemMessage = `Eres un Dungeon Master experimentado en Dungeons and Dragons 5ta Edición. Tu objetivo es proporcionar resultados únicos y creativos para ${
+            critical ? "golpes críticos" : "fallos críticos"
+         } con ataques de daño ${value}. Aquí tienes algunos ejemplos:
+  
+  ${examples.map((ex, index) => `Ejemplo ${index + 1}: "${ex}"`).join("\n")}
+  
+  Ahora, genera una descripción nueva y única basada en la información del usuario. Evita repetir los ejemplos anteriores.`;
 
-			const response = await axios.post(
-				'https://api.openai.com/v1/chat/completions',
-				payload,
-				{ headers }
-			);
+         const payload = {
+            model: "gpt-4",
+            temperature: 1.0,
+            frequency_penalty: 0.5,
+            presence_penalty: 0.5,
+            messages: [
+               {
+                  role: "system",
+                  content: systemMessage,
+               },
+               {
+                  role: "user",
+                  content: prompt,
+               },
+            ],
+         };
 
-			if (response.data.choices && response.data.choices.length > 0) {
-				// En lugar de setOutcome, retorna el contenido directamente
-				return response.data.choices[0].message.content;
-			}
-		} catch (error) {
-			console.error('Hubo un error al obtener un resultado de la IA:', error);
-			return 'Please ask Nico to put money on the OpenAI Account :/';
-		}
-	};
+         const headers = {
+            Authorization: `Bearer ${import.meta.env.VITE_OPENAI_SECRET_KEY}`,
+            "Content-Type": "application/json",
+         };
 
-	return fetchOutcome;
+         const response = await axios.post(
+            "https://api.openai.com/v1/chat/completions",
+            payload,
+            { headers }
+         );
+
+         if (response.data.choices && response.data.choices.length > 0) {
+            return response.data.choices[0].message.content;
+         }
+      } catch (error) {
+         console.error(
+            "Hubo un error al obtener un resultado de la IA:",
+            error
+         );
+         return "Error al generar la respuesta. Por favor, intenta de nuevo más tarde.";
+      }
+   };
+
+   return fetchOutcome;
 };
 
 export default useAIOutcome;

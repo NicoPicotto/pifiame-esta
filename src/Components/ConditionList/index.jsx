@@ -1,84 +1,127 @@
 const conditions = [
-	{
-		name: '😑 Blinded',
-		description: `A blinded creature can’t see and automatically fails any ability check that requires sight.
-    Attack rolls against the creature have advantage, and the creature’s attack rolls have disadvantage.`,
-	},
-	{
-		name: '🤩 Charmed',
-		description: `A charmed creature can’t attack the charmer or target the charmer with harmful abilities or magical effects.
-        The charmer has advantage on any ability check to interact socially with the creature.`,
-	},
-	{
-		name: '👂 Deafened',
-		description: `A deafened creature can’t hear and automatically fails any ability check that requires hearing.`,
-	},
-	{
-		name: '😱 Frightened',
-		description: `A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.
-        The creature can’t willingly move closer to the source of its fear.`,
-	},
-	{
-		name: '👟 Grappled',
-		description: `A grappled creature’s speed becomes 0, and it can’t benefit from any bonus to its speed.
-        The condition ends if the grappler is incapacitated (see the condition).
-        The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect, such as when a creature is hurled away by the thunderwave spell.`,
-	},
-	{
-		name: '🤕 Incapacitated',
-		description: `An incapacitated creature can’t take actions or reactions.`,
-	},
-	{
-		name: '👻 Invisible',
-		description: `An invisible creature is impossible to see without the aid of magic or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature’s location can be detected by any noise it makes or any tracks it leaves.
-        Attack rolls against the creature have disadvantage, and the creature’s attack rolls have advantage.`,
-	},
-	{
-		name: '📌 Paralyzed',
-		description: `A paralyzed creature is incapacitated (see the condition) and can’t move or speak.
-        The creature automatically fails Strength and Dexterity saving throws.
-        Attack rolls against the creature have advantage.
-        Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature.`,
-	},
-	{
-		name: '🗿 Petrified',
-		description: `A petrified creature is transformed, along with any nonmagical object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.
-        The creature is incapacitated (see the condition), can’t move or speak, and is unaware of its surroundings.
-        Attack rolls against the creature have advantage.
-        The creature automatically fails Strength and Dexterity saving throws.
-        The creature has resistance to all damage.
-        The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized.`,
-	},
-	{
-		name: '🤢 Poisoned',
-		description: `A poisoned creature has disadvantage on attack rolls and ability checks.`,
-	},
-	{
-		name: '🙃 Prone',
-		description: `A prone creature’s only movement option is to crawl, unless it stands up and thereby ends the condition.
-        The creature has disadvantage on attack rolls.
-        An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage.`,
-	},
-	{
-		name: '🔒 Restrained',
-		description: `A restrained creature’s speed becomes 0, and it can’t benefit from any bonus to its speed.
-        Attack rolls against the creature have advantage, and the creature’s attack rolls have disadvantage.
-        The creature has disadvantage on Dexterity saving throws.`,
-	},
-	{
-		name: '🤯 Stunned',
-		description: `A stunned creature is incapacitated (see the condition), can’t move, and can speak only falteringly.
-        The creature automatically fails Strength and Dexterity saving throws.
-        Attack rolls against the creature have advantage.`,
-	},
-	{
-		name: '😵 Unconscious',
-		description: `An unconscious creature is incapacitated (see the condition), can’t move or speak, and is unaware of its surroundings
-		The creature drops whatever it’s holding and falls prone.
-		The creature automatically fails Strength and Dexterity saving throws.
-		Attack rolls against the creature have advantage.
-		Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature.`,
-	},
+   {
+      name: "😑 Cegado",
+      description: `Mientras tengas la condición de Cegado, experimentas los siguientes efectos:
+
+	•	No puedes ver. No puedes ver y automáticamente fallas cualquier chequeo de habilidad que requiera visión.
+	•	Ataques afectados. Las tiradas de ataque contra ti tienen ventaja, y tus tiradas de ataque tienen desventaja.`,
+   },
+   {
+      name: "🤩 Hechizado",
+      description: `Mientras tengas la condición de Hechizado, experimentas los siguientes efectos:
+
+	•	No puedes dañar al hechicero. No puedes atacar al hechicero hacerlo objetivo con habilidades dañinas o efectos mágicos.
+	•	Ventaja social. El hechicero tiene ventaja en cualquier chequeo de habilidad para interactuar contigo socialmente.`,
+   },
+   {
+      name: "👂 Ensordecido",
+      description: `Mientras tengas la condición de Ensordecido, experimentas el siguiente efecto:
+
+	•	No puedes oír. No puedes oír y automáticamente fallas cualquier chequeo de habilidad que requiera audición.`,
+   },
+   {
+      name: "😱 Asustado",
+      description: `Mientras tengas la condición de Asustado, experimentas los siguientes efectos:
+
+	•	Afecta chequeos de habilidad y ataques. Tienes desventaja en los chequeos de habilidad y en las tiradas de ataque mientras la fuente del miedo esté dentro de 	línea de visión.
+	•	No puedes acercarte. No puedes acercarte voluntariamente a la fuente del miedo.`,
+   },
+   {
+      name: "👟 Agarrado",
+      description: `Mientras tengas la condición de Agarrado, experimentas los siguientes efectos:
+
+	•	Velocidad 0. Tu velocidad es 0 y no puede aumentar.
+	•	Ataques afectados. Tienes desventaja en las tiradas de ataque contra cualquier objetivo que no sea quien te ha agarrado.
+	•	Movible. La criatura que te agarró puede arrastrarte o llevarte cuando se mueve, pero cada pie de movimiento le cuesta 1 pie adicional a menos que seas tamaño 	Diminuto o dos o más tamaños menor que ella.`,
+   },
+   {
+      name: "🤕 Incapacitado",
+      description: `Mientras tengas la condición de Incapacitado, experimentas los siguientes efectos:
+
+	•	Inactivo. No puedes realizar ninguna acción, acción adicional ni reacción.
+	•	Sin concentración. Tu concentración se rompe.
+	•	Sin habla. No puedes hablar.
+	•	Sorprendido. Si estás incapacitado al tirar iniciativa, tienes desventaja en la tirada.`,
+   },
+   {
+      name: "👻 Invisible",
+      description: `Mientras tengas la condición de Invisible, experimentas los siguientes efectos:
+
+	•	Sorpresa. Si estás invisible cuando tiras iniciativa, tienes ventaja en la tirada.
+	•	Oculto. No te afectan los efectos que requieren que su objetivo sea visto, a menos que el creador del efecto pueda verte de alguna manera. Cualquier equipo que estés usando o llevando también está oculto.
+	•	Ataques afectados. Las tiradas de ataque contra ti tienen desventaja, y tus tiradas de ataque tienen ventaja. Si alguna criatura puede verte de alguna manera, no obtienes este beneficio contra ella.`,
+   },
+   {
+      name: "📌 Paralizado",
+      description: `Mientras tengas la condición de Paralizado, experimentas los siguientes efectos:
+
+	•	Incapacitado. Tienes la condición de Incapacitado.
+	•	Velocidad 0. Tu velocidad es 0 y no puede aumentar.
+	•	Salvaciones afectadas. Fallas automáticamente las tiradas de salvación de Fuerza y Destreza.
+	•	Ataques afectados. Las tiradas de ataque contra ti tienen ventaja.
+	•	Golpes críticos automáticos. Cualquier tirada de ataque que te golpee es un golpe crítico si el atacante está a 5 pies de ti.`,
+   },
+   {
+      name: "🗿 Petrificado",
+      description: `Mientras tengas la condición de Petrificado, experimentas los siguientes efectos:
+
+	•	Transformado en una sustancia inanimada. Eres transformado, junto con cualquier objeto no mágico que lleves puesto o cargues, en una sustancia sólida inanimada (usualmente piedra). Tu peso se incrementa por un factor de diez y dejas de envejecer.
+	•	Incapacitado. Tienes la condición de Incapacitado.
+	•	Velocidad 0. Tu velocidad es 0 y no puede aumentar.
+	•	Ataques afectados. Las tiradas de ataque contra ti tienen ventaja.
+	•	Salvaciones afectadas. Fallas automáticamente las tiradas de salvación de Fuerza y Destreza.
+	•	Resistencia al daño. Tienes resistencia a todo el daño.
+	•	Inmunidad al veneno. Tienes inmunidad a la condición de Envenenado.`,
+   },
+   {
+      name: "🤢 Envenenado",
+      description: `Mientras tengas la condición de Envenenado, experimentas el siguiente efecto:
+
+	•	Afecta chequeos de habilidad y ataques. Tienes desventaja en las tiradas de ataque y en los chequeos de habilidad.`,
+   },
+   {
+      name: "🙃 Tumbado",
+      description: `Mientras tengas la condición de Tumbado, experimentas los siguientes efectos:
+
+	•	Movimiento restringido. Tus únicas opciones de movimiento son arrastrarte o gastar una cantidad de movimiento igual a la mitad de tu velocidad (redondeando hacia abajo) para ponerte de pie y, por lo tanto, terminar la condición. Si tu velocidad es 0, no puedes levantarte.
+	•	Ataques afectados. Tienes desventaja en las tiradas de ataque. Una tirada de ataque contra ti tiene ventaja si el atacante está a 5 pies de ti. De lo contrario, esa tirada de ataque tiene desventaja.`,
+   },
+   {
+      name: "🔒 Restringido",
+      description: `Mientras tengas la condición de Restringido, experimentas los siguientes efectos:
+
+	•	Velocidad 0. Tu velocidad es 0 y no puede aumentar.
+	•	Ataques afectados. Las tiradas de ataque contra ti tienen ventaja, y tus tiradas de ataque tienen desventaja.
+	•	Salvaciones afectadas. Tienes desventaja en las tiradas de salvación de Destreza.`,
+   },
+   {
+      name: "🤯 Aturdido",
+      description: `Mientras tengas la condición de Aturdido, experimentas los siguientes efectos:
+
+	•	Incapacitado. Tienes la condición de Incapacitado.
+	•	Salvaciones afectadas. Fallas automáticamente las tiradas de salvación de Fuerza y Destreza.
+	•	Ataques afectados. Las tiradas de ataque contra ti tienen ventaja.`,
+   },
+   {
+      name: "😵 Inconsciente",
+      description: `Mientras tengas la condición de Inconsciente, experimentas los siguientes efectos:
+
+	•	Inerte. Tienes las condiciones de Incapacitado y Caído, y sueltas lo que estés sosteniendo. Cuando esta condición termina, permaneces Caído.
+	•	Velocidad 0. Tu velocidad es 0 y no puede aumentar.
+	•	Ataques afectados. Las tiradas de ataque contra ti tienen ventaja.
+	•	Salvaciones afectadas. Fallas automáticamente las tiradas de salvación de Fuerza y Destreza.
+	•	Golpes críticos automáticos. Cualquier tirada de ataque que te golpee es un golpe crítico si el atacante está a 5 pies de ti.
+	•	Inconsciente del entorno. No eres consciente de tu entorno.`,
+   },
+   {
+      name: "😓 Exhausto",
+      description: `Mientras tengas la condición de Exhausto, experimentas los siguientes efectos:
+
+	•	Niveles de Exhausto. Esta condición es acumulativa. Cada vez que la recibes, obtienes 1 nivel de Exhausto. Muéres si tu nivel de Exhausto es 6.
+	•	Pruebas de D20 afectadas. Cuando haces una prueba de D20, la tirada se reduce en 2 veces tu nivel de Exhausto.
+	•	Velocidad reducida. Tu velocidad se reduce en un número de pies igual a 5 veces tu nivel de Exhausto.
+	•	Eliminar niveles de Exhausto. Terminar un descanso largo elimina 1 de tus niveles de Exhausto. Cuando tu nivel de Exhausto llega a 0, la condición termina.`,
+   },
 ];
 
 export default conditions;
