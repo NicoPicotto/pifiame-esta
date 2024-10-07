@@ -2,7 +2,6 @@ import axios from "axios";
 import outcomesList from "./outcomes.jsx";
 
 const useAIOutcome = () => {
-	
    const getRandomExamples = (type, damageType, count = 2) => {
       // Verificamos que existan resultados para el tipo de golpe y daño.
       if (!outcomesList[type] || !outcomesList[type][damageType]) return [];
@@ -36,7 +35,7 @@ const useAIOutcome = () => {
 
          // Construir el payload para OpenAI
          const payload = {
-            model: "gpt-4",
+            model: "gpt-4o",
             temperature: 1.0,
             frequency_penalty: 0.5,
             presence_penalty: 0.5,
