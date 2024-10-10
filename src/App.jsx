@@ -57,6 +57,7 @@ function App() {
       >
          <Stack
             maxW={isMobile ? "90%" : "36em"}
+            w={isMobile && "90%"}
             justify='center'
             align='center'
             gap='1.5em'
@@ -139,12 +140,15 @@ function App() {
                   </Button>
                </Stack>
                <Stack h='5em' w='100%' display='inline' textAlign='center'>
-                  <TypewriterComponent outcomeText={outcomeText} />
+                  <TypewriterComponent
+                     outcomeText={outcomeText}
+                     isMobile={isMobile}
+                  />
                </Stack>
             </Stack>
          </Stack>
          <Text
-            fontSize={isMobile ? "xs" : "sm"}
+            fontSize='sm'
             color='terciario'
             position='fixed'
             bottom={!isMobile && "2em"}
