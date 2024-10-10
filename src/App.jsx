@@ -34,7 +34,7 @@ function App() {
 
       const prompt = `Describe el resultado de un ${
          critical ? "golpe crítico (natural 20)" : "fallo crítico (natural 1)"
-      } con un ataque de daño tipo ${value} (Cortante, Contundente o Perforante).`;
+      } con un ataque de daño tipo ${value}.`;
 
       // Fetch the outcome using the revised prompt, critical, and value
       const result = await fetchOutcome(prompt, critical, value);
@@ -143,7 +143,7 @@ function App() {
             </Stack>
          </Stack>
          <Text
-            fontSize='sm'
+            fontSize={isMobile ? "xs" : "sm"}
             color='terciario'
             position='fixed'
             bottom={!isMobile && "2em"}
