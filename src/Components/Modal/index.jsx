@@ -39,7 +39,7 @@ const ModalConditions = () => {
                variant='unstyled'
                target='_blank'
                position='fixed'
-               top='2em'
+               top={!isDesktop ? "1em" : "2rem"}
                right='2em'
                fontSize='sm'
                color='terciario'

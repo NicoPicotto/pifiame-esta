@@ -47,7 +47,7 @@ function App() {
          h='100dvh'
          overflow='hidden'
          align='center'
-         justify='center'
+         justify={isMobile ? "start" : "center"}
          position='relative'
          background={
             critical
@@ -60,6 +60,7 @@ function App() {
             justify='center'
             align='center'
             gap='1.5em'
+            pt={isMobile && "30%"}
          >
             <Stack align='center'>
                <Heading as='h1' size='xl' color='terciario' textAlign='center'>
